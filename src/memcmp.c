@@ -62,6 +62,13 @@ static int _aligned_native_memcmp_128(const void * buf1, const void * buf2, cons
 	_mm_prefetch(buf2,_MM_HINT_NTA);
 	for(size_t byteIndex = 0; byteIndex < size; byteIndex += 16)
 	{
+#ifdef NT_MEMOPS_C23
+		if([[unlikely]] byteIndex % 64 == 0)
+		{
+			_mm_prefetch((void*)(((char*)src)+byteIndex+64),_MM_HINT_T1);
+			_mm_prefetch((void*)(((char*)dest)+byteIndex+64),_MM_HINT_T1);
+		}
+#endif
 //		_mm_prefetch((void*)(((char*)buf1)+byteIndex+64),_MM_HINT_NTA);
 //		_mm_prefetch((void*)(((char*)buf2)+byteIndex+64),_MM_HINT_NTA);
 		__m128 reg1 = _mm_load_ps((void*)(((char*)buf1)+byteIndex));

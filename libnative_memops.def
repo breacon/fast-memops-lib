@@ -1,0 +1,13 @@
+LIBRARY libnative_memops
+EXPORTS
+	native_memcpy
+	aligned_native_memcpy
+	stream_native_memcpy
+	stream_native_memcpy_cache
+	native_memset
+	aligned_native_memset
+	stream_native_memset
+	stream_native_memset_cache
+	native_memcmp
+	aligned_native_memcmp
+	stream_native_memcmp

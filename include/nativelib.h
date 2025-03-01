@@ -33,6 +33,9 @@ typedef unsigned long long int size_t;
 #endif /* __AVX__ */
 #endif /* __AVXF512__ */
 
+#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 202311L)
+#define NT_MEMOPS_C23
+#endif
 
 //#if !defined(__SSE_4_2__) && defined(__GNUC__)
 //#define GNUC_OVER_SSE
