@@ -3,8 +3,6 @@
 a small library for windows (x64) that provides some basic fast, optimized memory operations like memcpy, memcmp and memset
 
 **NOTICE**
-
-   - you can use 'dlltool' for a static lib
    - some "stream" operations require AVX2 (if you only have AVX)
    - in my limited testing, this did come out to be marginaly faster than MingW-w64's libc implementation, I believe the benefits tend to grow with larger buffers.
   - stream operations require aligned buffers
