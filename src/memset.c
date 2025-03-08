@@ -65,13 +65,13 @@ static void _aligned_native_memset_128(void * __restrict__ buffer, int byteValue
 	__m128 reg = _mm_set1_ps(tbyteValue.f_t);
 	for(size_t byteIndex = 0; byteIndex < size; byteIndex+=16)
 	{
-#ifdef NT_MEMOPS_C23
-		if([[unlikely]] byteIndex % 64 == 0)
-		{
-			_mm_prefetch((void*)(((char*)src)+byteIndex+64),_MM_HINT_T1);
-			_mm_prefetch((void*)(((char*)dest)+byteIndex+64),_MM_HINT_T1);
-		}
-#endif
+//#ifdef NT_MEMOPS_C23
+//		if([[unlikely]] byteIndex % 64 == 0)
+//		{
+//			_mm_prefetch((void*)(((char*)src)+byteIndex+64),_MM_HINT_T1);
+//			_mm_prefetch((void*)(((char*)dest)+byteIndex+64),_MM_HINT_T1);
+//		}
+//#endif
 //		_mm_prefetch(((char*__restrict__)buffer)+byteIndex,_MM_HINT_NTA);
 		_mm_store_ps((float *)(((char*__restrict__)buffer)+byteIndex),reg);
 	}

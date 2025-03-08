@@ -1,5 +1,5 @@
 /*
- * memcpyw.c
+ * memcpy.c
  *
  *  Created on: Feb 22, 2025
  *      Author: breacon
@@ -56,13 +56,13 @@ static void _aligned_native_memcpy_128(const void * __restrict__ src, void * __r
 	_mm_prefetch(dest,_MM_HINT_NTA);
 	for(size_t byteIndex = 0; byteIndex < size; byteIndex+= 16)
 	{
-#ifdef NT_MEMOPS_C23
-		if([[unlikely]] byteIndex % 64 == 0)
-		{
-			_mm_prefetch((void*)(((char*)src)+byteIndex+64),_MM_HINT_T1);
-			_mm_prefetch((void*)(((char*)dest)+byteIndex+64),_MM_HINT_T1);
-		}
-#endif
+//#ifdef NT_MEMOPS_C23
+//		if([[unlikely]] byteIndex % 64 == 0)
+//		{
+//			_mm_prefetch((void*)(((char*)src)+byteIndex+64),_MM_HINT_T1);
+//			_mm_prefetch((void*)(((char*)dest)+byteIndex+64),_MM_HINT_T1);
+//		}
+//#endif
 //		_mm_prefetch(src+byteIndex,_MM_HINT_NTA);
 		__m128 reg = _mm_load_ps((float*)(((const char*__restrict__)src)+byteIndex));
 		_mm_store_ps((float*)(((const char*__restrict__)dest)+byteIndex),reg);
